@@ -1,50 +1,43 @@
-# React + TypeScript + Vite
+# Sending contact emails in React js using EMAIL JS
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+To send data from contact forms to our preferred email is easy using Email js.
 
-Currently, two official plugins are available:
+# Running the project
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+To run the project make sure you have node installed if not you can download on the official node website [here](https://nodejs.org/)
 
-## Expanding the ESLint configuration
+## Cloning & Installation
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+to clone run `git clone --single-branch -b initial git@github.com:techwithtwin/send-mail-react.git` or click on code button and download zip and extract to your preffered folder
 
-- Configure the top-level `parserOptions` property like this:
+to install dependancies use your favorite package manager, mine happens to be `pnpm` you can use `yarn` or `npm`
 
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
-```
+### PNPM
 
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
+`pnpm i`
 
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
+### NPM
 
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
-```
+`rm -rf pnpm-lock.yml` then `npm i`
+
+### Yarn
+
+`rm -fr pnpm-lock.yml` then `yarn`
+
+## Running website
+
+### PNPM
+
+`pnpm dev`
+
+### NPM
+
+`npm run dev`
+
+### Yarn
+
+`yarn dev`
+
+## Conclusion
+
+Finally our project is running, now follow up on the video by TechWithTwin
