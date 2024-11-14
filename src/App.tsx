@@ -36,7 +36,10 @@ function App() {
         <Heading mb=".5rem" size="2xl" color="gray.800">
           Contact Us
         </Heading>
-        <Separator colorPalette="red" size="lg" variant="solid" />
+        <Box asChild colorPalette="blue">
+          <hr />
+        </Box>
+
         <Field label="Full Name">
           <Input type="text" placeholder="John Doe" {...inputStyles} />
         </Field>
