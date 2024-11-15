@@ -3,7 +3,6 @@ import {
   Flex,
   Heading,
   Input,
-  Separator,
   Stack,
   Text,
   Textarea,
