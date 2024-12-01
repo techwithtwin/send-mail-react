@@ -1,16 +1,6 @@
-import {
-  Box,
-  Flex,
-  Heading,
-  Input,
-  Stack,
-  Text,
-  Textarea,
-} from "@chakra-ui/react";
-import { IoIosSend } from "react-icons/io";
+import { Box, Flex, Text } from "@chakra-ui/react";
 import "./App.css";
-import { Button } from "./components/ui/button";
-import { Field } from "./components/ui/field";
+import ContactForm from "./components/home/contact-form";
 
 function App() {
   return (
@@ -24,38 +14,7 @@ function App() {
       justify="center"
       pos="relative"
     >
-      <Stack
-        bg="rgba(255, 255, 255, 0.75)"
-        borderRadius="xl"
-        boxShadow="md"
-        w="xl"
-        backdropFilter="blur(5px)"
-        p={6}
-      >
-        <Heading mb=".5rem" size="2xl" color="gray.800">
-          Contact Us
-        </Heading>
-        <Box asChild colorPalette="blue">
-          <hr />
-        </Box>
-
-        <Field label="Full Name">
-          <Input type="text" placeholder="John Doe" {...inputStyles} />
-        </Field>
-        <Field label="Email">
-          <Input type="email" placeholder="john@example.com" {...inputStyles} />
-        </Field>
-        <Field label="Subject">
-          <Input type="text" placeholder="Inquiry Subject" {...inputStyles} />
-        </Field>
-        <Field label="Message">
-          <Textarea placeholder="Your message here..." {...inputStyles} />
-        </Field>
-        <Button colorPalette="teal" mt=".5rem">
-          Send <IoIosSend />
-        </Button>
-      </Stack>
-
+      <ContactForm />
       <Text pos="absolute" color="white" bottom={4} right={4}>
         Image by{" "}
         <Box asChild mr="1" textDecor="underline" fontWeight={600}>
@@ -73,10 +32,3 @@ function App() {
 }
 
 export default App;
-
-const inputStyles = {
-  borderRadius: "md",
-  border: "1px solid",
-  borderColor: "gray.600",
-  bg: "whiteAlpha.500",
-};
