@@ -6,21 +6,38 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { ContactSchema, ContactFormdata } from "../../../schema";
 import { toast } from "react-toastify";
+import { useState } from "react";
+import { sendEmail } from "../../utils/functions";
 
 const ContactForm = () => {
   const {
     register,
     handleSubmit,
+    reset,
     formState: { errors },
   } = useForm<ContactFormdata>({
     resolver: zodResolver(ContactSchema),
     mode: "onChange",
   });
+  const [isLoading, setIsLoading] = useState(false);
 
-  const onSubmit = (data: ContactFormdata) => {
-    console.log(data);
-    toast.success("Submitted");
+  const onSubmit = async (data: ContactFormdata) => {
+    setIsLoading(true);
+
+    const res = await sendEmail(data);
+    setIsLoading(false);
+
+    //check for success
+    if (res.status) {
+      toast.success(res.message);
+      reset();
+      return;
+    }
+
+    //toast an error
+    toast.error(res.message);
   };
+
   return (
     <Stack
       bg="rgba(255, 255, 255, 0.75)"
@@ -95,7 +112,7 @@ const ContactForm = () => {
           {...inputStyles}
         />
       </Field>
-      <Button colorPalette="teal" mt=".5rem" type="submit">
+      <Button loading={isLoading} colorPalette="teal" mt=".5rem" type="submit">
         Send <IoIosSend />
       </Button>
     </Stack>
@@ -105,8 +122,9 @@ const ContactForm = () => {
 export default ContactForm;
 
 const inputStyles = {
-  borderRadius: "md",
-  border: "1px solid",
-  borderColor: "gray.600",
+  // borderRadius: "md",
+  // border: "1px solid",
+  // borderColor: "gray.600",
   bg: "whiteAlpha.500",
+  boxShadow: "sm",
 };
