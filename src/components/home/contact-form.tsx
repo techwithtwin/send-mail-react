@@ -2,8 +2,25 @@ import { Box, Heading, Input, Stack, Textarea } from "@chakra-ui/react";
 import { IoIosSend } from "react-icons/io";
 import { Field } from "../ui/field";
 import { Button } from "../ui/button";
+import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { ContactSchema, ContactFormdata } from "../../../schema";
+import { toast } from "react-toastify";
 
 const ContactForm = () => {
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<ContactFormdata>({
+    resolver: zodResolver(ContactSchema),
+    mode: "onChange",
+  });
+
+  const onSubmit = (data: ContactFormdata) => {
+    console.log(data);
+    toast.success("Submitted");
+  };
   return (
     <Stack
       bg="rgba(255, 255, 255, 0.75)"
@@ -13,6 +30,8 @@ const ContactForm = () => {
       backdropFilter="blur(5px)"
       p={6}
       mx="5%"
+      as="form"
+      onSubmit={handleSubmit(onSubmit)}
     >
       <Heading mb=".5rem" size="2xl" color="gray.800">
         Contact Us
@@ -21,19 +40,62 @@ const ContactForm = () => {
         <hr />
       </Box>
 
-      <Field label="Full Name">
-        <Input type="text" placeholder="John Doe" {...inputStyles} />
+      <Field
+        label="Full Name"
+        required
+        invalid={!!errors.fullName}
+        errorText={errors.fullName?.message}
+        helperText={!errors.fullName && "Enter your Full name"}
+      >
+        <Input
+          type="text"
+          placeholder="John Doe"
+          {...register("fullName")}
+          {...inputStyles}
+        />
       </Field>
-      <Field label="Email">
-        <Input type="email" placeholder="john@example.com" {...inputStyles} />
+      <Field
+        label="Email"
+        required
+        invalid={!!errors.email}
+        errorText={errors.email?.message}
+        helperText={!errors.email && "Enter your Email"}
+      >
+        <Input
+          type="email"
+          placeholder="john@example.com"
+          {...register("email")}
+          {...inputStyles}
+        />
       </Field>
-      <Field label="Subject">
-        <Input type="text" placeholder="Inquiry Subject" {...inputStyles} />
+      <Field
+        label="Subject"
+        required
+        invalid={!!errors.subject}
+        errorText={errors.subject?.message}
+        helperText={!errors.subject && "Subject of your Inquiry"}
+      >
+        <Input
+          type="text"
+          placeholder="Inquiry Subject"
+          {...register("subject")}
+          {...inputStyles}
+        />
       </Field>
-      <Field label="Message">
-        <Textarea placeholder="Your message here..." {...inputStyles} />
+      <Field
+        label="Message"
+        required
+        invalid={!!errors.message}
+        errorText={errors.message?.message}
+        helperText={!errors.message && "Enter your message in detail"}
+      >
+        <Textarea
+          placeholder="Your message here..."
+          {...register("message")}
+          {...inputStyles}
+        />
       </Field>
-      <Button colorPalette="teal" mt=".5rem">
+      <Button colorPalette="teal" mt=".5rem" type="submit">
         Send <IoIosSend />
       </Button>
     </Stack>
